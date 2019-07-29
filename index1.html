@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>实践多媒体</title>
+<style type="text/css">
+	video{
+		
+	}
+</style>
+</head>
+
+<body>
+	<!--使用HTML5视频直接在应用里嵌入视频-->
+    <video width="960" height="600" poster="test.jpg" id="myVideo">
+    	<source src="test.mp4" type="video/mp4" >
+    </video>
+    <div>
+    	<button class="button stop">stop</button>
+    	<button class="button play">play/pause</button>
+    	<button class="button skipBack">skipBack</button>
+    	<button class="button skipAhead">skipAhead</button>
+    	<button class="button volumeUp">volume up</button>
+    	<button class="button volumeDown">volume down</button>
+    </div>
+	<!--使用Buzz构造复杂的音频应用-->
+	<a href="load.html">load</a>
+    <div class="clipName">My New Pod Cast</div>
+    <div class="audio player">
+    	<audio controls src="fight_two.ogg" loop/>
+    </div>
+    <script type="text/javascript">
+		var videoEl = document.querySelector("#myVideo");
+    	document.querySelector(".play").addEventListener("click",function(e){
+			if(videoEl.currentTime == 0){
+				videoEl.src = "test.mp4";
+			}
+			if(videoEl.paused === true){
+				videoEl.play();
+			}
+			else{
+				videoEl.pause();
+			}
+		});
+		document.querySelector(".stop").addEventListener("click",function(e){
+			videoEl.src = "";
+		});
+		document.querySelector(".skipAhead").addEventListener("click",function(e){
+			videoEl.currentTime += 5;
+		});
+		document.querySelector(".skipBack").addEventListener("click",function(e){
+			videoEl.currentTime -= 5;
+		});
+		document.querySelector(".volumeDown").addEventListener("click",function(e){
+			if(videoEl.volume>0){
+				videoEl.volume -= 0.1;
+			}
+		});
+		document.querySelector(".volumeUp").addEventListener("click",function(e){
+			if(videoEl.volume<1){
+				videoEl.volume += 0.1;
+			}
+		});
+    </script>
+</body>
+</html>
